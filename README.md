@@ -8,11 +8,11 @@ We currently only supports Mapbox spec. Leaflet or Google Maps Plugin is in our 
 
 Using npm:
 
-`npm install layer-manager`
+`npm install @wmo-raf/layer-manager`
 
 Using yarn:
 
-`yarn add layer-manager`
+`yarn add @wmo-raf/layer-manager`
 
 
 ## :heavy_exclamation_mark: Requirements
