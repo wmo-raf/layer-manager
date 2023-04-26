@@ -1,0 +1,103 @@
+{
+  "name": "layer-manager",
+  "version": "1.0.0",
+  "description": "A library to get a layer depending on provider and layer spec",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wmo-raf/layer-manager.git"
+  },
+  "author": "WMO RAF",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "dist/layer-manager.esm.js",
+  "scripts": {
+    "serve": "http-server . -p 8000 -a 0.0.0.0",
+    "prepublishOnly": "bnr build",
+    "lint": "eslint -c .eslintrc.json --ext .jsx,.js --fix",
+    "test": "jest --config ./jest.config.js --colors",
+    "watch": "bnr watch && bnr babel:watch",
+    "build": "bnr build && bnr babel:build",
+    "prettier": "prettier --single-quote --write \"src/**/*.js\"",
+    "start:sandbox": "cd sandbox && yarn start",
+    "build:sandbox": "cd sandbox && yarn build",
+    "test:sandbox": "cd sandbox && yarn test",
+    "deploy:sandbox": "cd sandbox && yarn deploy"
+  },
+  "betterScripts": {
+    "build": {
+      "command": "rollup -c",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "watch": {
+      "command": "rollup -c -w && babel src -d lib --watch",
+      "env": {
+        "BABEL_ENV": "rollup"
+      }
+    },
+    "babel:build": {
+      "command": "babel src -d lib"
+    },
+    "babel:watch": {
+      "command": "babel src -d lib --watch"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --config .prettierrc --write",
+      "eslint -c .eslintrc.json --ext .jsx,.js --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "better-npm-run": "^0.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-vizzuality": "^1.3.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.5",
+    "jest": "^23.6.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "rollup": "^0.66.2",
+    "rollup-plugin-babel": "3.0.7",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-terser": "^4.0.2",
+    "viewport-mercator-project": "6.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "supercluster": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.2"
+  }
+}
